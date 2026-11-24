@@ -1,0 +1,1554 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f2e9">
+  <link rel="icon" href="favicon-v2.png" type="image/png" sizes="64x64">
+  <title>Основное меню — Прованс</title>
+  <style>
+    @font-face {
+      font-family: "Cormorant Garamond";
+      src: url("menu-fonts/cormorant-garamond-bold.woff2") format("woff2");
+      font-weight: 700;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Yanone Kaffeesatz";
+      src: url("menu-fonts/yanone-kaffeesatz-bold.woff2") format("woff2");
+      font-weight: 700;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Magnolia Script";
+      src: url("menu-fonts/magnolia-script.otf") format("opentype");
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    :root {
+      color-scheme: light;
+      --paper: #f7f2e9;
+      --cream: #fbf8f1;
+      --ink: #493b54;
+      --muted: #655769;
+      --accent: #725681;
+      --line: #ddd1dc;
+      --lavender: #f0e8f2;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --display: "Yanone Kaffeesatz", "Arial Narrow", system-ui, sans-serif;
+      --script: "Magnolia Script", Georgia, serif;
+      font-family: system-ui, sans-serif;
+      color: var(--ink);
+      background: #eee7ea;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    h1, h2, h3, p, ul {
+      margin: 0;
+    }
+
+    h1, h3 {
+      font-family: var(--display);
+      font-weight: 700;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-weight: 700;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .page {
+      max-inline-size: 68rem;
+      min-block-size: 100vh;
+      margin-inline: auto;
+      padding-inline: clamp(1rem, 5vw, 3.5rem);
+      background: var(--paper);
+    }
+
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-block-size: 2.75rem;
+      margin-block-start: 0.65rem;
+      color: var(--accent);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .home-link:hover,
+    .contents-link:hover {
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: clamp(0.5rem, 4vw, 3rem);
+      min-block-size: clamp(9rem, 28vw, 15.5rem);
+      padding-block: 0.45rem 1.35rem;
+    }
+
+    .venue {
+      margin-block-end: 0.4rem;
+      color: var(--accent);
+      font-family: var(--script);
+      font-size: clamp(0.95rem, 2.5vw, 1.35rem);
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6.6vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: 0.015em;
+      text-transform: uppercase;
+      overflow-wrap: anywhere;
+    }
+
+    .hero-image {
+      display: block;
+      inline-size: clamp(6.5rem, 28vw, 13rem);
+      block-size: auto;
+      margin-inline-end: clamp(0rem, 3vw, 2rem);
+    }
+
+    .contents {
+      padding: clamp(0.85rem, 3vw, 1.55rem);
+      border: 1px solid var(--line);
+      border-radius: 0.5rem;
+      background: var(--lavender);
+      scroll-margin-block-start: 1rem;
+    }
+
+    .contents h2 {
+      margin-block-end: 0.75rem;
+      font-size: 1.6rem;
+    }
+
+    .categories,
+    .dish-list {
+      padding: 0;
+      list-style: none;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.45rem;
+    }
+
+    .categories a {
+      display: flex;
+      align-items: center;
+      min-block-size: 2.75rem;
+      block-size: 100%;
+      padding: 0.4rem 0.7rem;
+      border: 1px solid #d9c9de;
+      border-radius: 0.25rem;
+      background: var(--cream);
+      font-family: var(--script);
+      font-size: clamp(0.875rem, 2.55vw, 1.1rem);
+      line-height: 1.2;
+      text-decoration: none;
+    }
+
+    .categories a:hover {
+      border-color: var(--accent);
+      background: #f6eff7;
+    }
+
+    .menu-section {
+      margin-block: clamp(2.45rem, 6vw, 4.1rem);
+      scroll-margin-block-start: 1.15rem;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      padding-block-end: 0.5rem;
+      border-block-end: 1px solid var(--accent);
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.55rem, 4.4vw, 2.65rem);
+    }
+
+    .contents-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      min-block-size: 2.75rem;
+      color: var(--accent);
+      font-size: 0.78rem;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .menu-section:target .section-heading {
+      border-block-end-width: 2px;
+    }
+
+    .dish-list {
+      column-count: 2;
+      column-gap: clamp(1.75rem, 5vw, 3.5rem);
+    }
+
+    .dish {
+      break-inside: avoid;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 0.45rem 0.75rem;
+      padding-block: 0.9rem;
+      border-block-end: 1px solid var(--line);
+    }
+
+    .dish h3 {
+      font-size: clamp(1.3rem, 2.4vw, 1.55rem);
+      line-height: 1.13;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      overflow-wrap: anywhere;
+    }
+
+    .composition,
+    .assortment {
+      margin-block-start: 0.33rem;
+      color: var(--muted);
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .assortment {
+      padding-inline-start: 1.15rem;
+    }
+
+    .assortment li + li {
+      margin-block-start: 0.1rem;
+    }
+
+    .prices {
+      display: grid;
+      gap: 0.45rem;
+      text-align: end;
+      font-family: var(--display);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .price {
+      display: block;
+      font-size: 1.2rem;
+      line-height: 1.25;
+    }
+
+    .portion {
+      display: block;
+      margin-block-start: 0.12rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.25;
+    }
+
+    .availability {
+      margin-block-start: 0.7rem;
+      color: var(--muted);
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .footer {
+      padding-block: 1.25rem 2.5rem;
+      border-block-start: 1px solid var(--line);
+    }
+
+    .pdf-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      min-block-size: 2.75rem;
+      padding-inline: 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 0.25rem;
+      background: var(--lavender);
+      text-decoration: none;
+    }
+
+    .pdf-link:hover {
+      border-color: var(--accent);
+    }
+
+    @media (max-width: 45rem) {
+      .categories {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .dish-list {
+        column-count: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a class="home-link" href="index.html"><span aria-hidden="true">←</span> Выбор меню</a>
+      <div class="hero">
+        <div>
+          <p class="venue">Кафе «Прованс»</p>
+          <h1>Основное меню</h1>
+        </div>
+        <img class="hero-image" src="menu-lavender.webp" alt="" width="420" height="457" fetchpriority="high">
+      </div>
+      <nav class="contents" id="contents" aria-labelledby="contents-title" tabindex="-1">
+        <h2 id="contents-title">Содержание</h2>
+        <ul class="categories">
+          <li><a href="#soups">Первые блюда</a></li>
+          <li><a href="#salads">Салаты</a></li>
+          <li><a href="#hot">Горячие блюда</a></li>
+          <li><a href="#sides">Гарниры</a></li>
+          <li><a href="#fast-food">Фаст-фуд</a></li>
+          <li><a href="#pizza">Пицца</a></li>
+          <li><a href="#pies">Пироги</a></li>
+          <li><a href="#desserts">Десерты</a></li>
+          <li><a href="#tea">Чайная карта</a></li>
+          <li><a href="#coffee">Кофейная карта</a></li>
+          <li><a href="#drinks">Напитки</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="menu-section" id="soups" aria-labelledby="soups-title" tabindex="-1">
+        <header class="section-heading">
+          <h2 id="soups-title">Первые блюда</h2>
+          <a class="contents-link" href="#contents"><span aria-hidden="true">↑</span> К содержанию</a>
+        </header>
+        <ul class="dish-list">
+          <li class="dish">
+            <div>
+              <h3>Борщ</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">160&nbsp;₽</strong>
+                <span class="portion">300 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Солянка</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">190&nbsp;₽</strong>
+                <span class="portion">300 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Щи</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">150&nbsp;₽</strong>
+                <span class="portion">300 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Уха из лосося</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">200&nbsp;₽</strong>
+                <span class="portion">300 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Гороховый суп с копчёностями</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">160&nbsp;₽</strong>
+                <span class="portion">300 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Куриный бульон с яйцом и луком</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">140&nbsp;₽</strong>
+                <span class="portion">300 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Окрошка на кефире</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">170&nbsp;₽</strong>
+                <span class="portion">300 г</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p class="availability">* Готовятся в ограниченном количестве. Уточняйте по наличию у администратора.</p>
+      </section>
+
+      <section class="menu-section" id="salads" aria-labelledby="salads-title" tabindex="-1">
+        <header class="section-heading">
+          <h2 id="salads-title">Салаты</h2>
+          <a class="contents-link" href="#contents"><span aria-hidden="true">↑</span> К содержанию</a>
+        </header>
+        <ul class="dish-list">
+          <li class="dish">
+            <div>
+              <h3>Витаминный</h3>
+              <p class="composition">капуста, огурец, морковь, специи</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">120&nbsp;₽</strong>
+                <span class="portion">100 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Оливье</h3>
+              <p class="composition">картофель, колбаса, огурец свежий, огурец маринованный, горошек, майонез, зелень</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">180&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Греческий</h3>
+              <p class="composition">помидор, огурец, лук красный, перец сладкий, сыр «сиртаки», масло оливковое, орегано, листья салата, оливки</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">280&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Цезарь с курицей</h3>
+              <p class="composition">салат «айсберг», соус, помидор, сухари, сыр твердый, курица</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">360&nbsp;₽</strong>
+                <span class="portion">200 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Цезарь с креветкой</h3>
+              <p class="composition">салат «айсберг», креветки, соус, помидор, сухари, сыр твердый</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">400&nbsp;₽</strong>
+                <span class="portion">200 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Мимоза из лосося</h3>
+              <p class="composition">лосось, морковь, сыр, яйцо, майонез</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">200&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Винегрет</h3>
+              <p class="composition">картофель, свекла, морковь, огурец, консервированный горошек, капуста квашеная</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">160&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Коктейль с ветчиной и сыром</h3>
+              <p class="composition">ветчина, огурец свежий, яйцо, сыр, майонез, сметана, перец сладкий</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">280&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Сельдь под шубой</h3>
+              <p class="composition">свекла, морковь, яйцо, лук, сельдь, картофель</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">200&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Поке с лососем</h3>
+              <p class="composition">рис, огурец, авокадо, чука, лосось, соус унаги, ореховый соус, кунжут, лист нори</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">420&nbsp;₽</strong>
+                <span class="portion">350 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Поке с креветкой</h3>
+              <p class="composition">рис, огурец, авокадо, чука, креветка, соус унаги, ореховый соус, кунжут, лист нори</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">470&nbsp;₽</strong>
+                <span class="portion">350 г</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p class="availability">* Готовятся в ограниченном количестве. Уточняйте по наличию у администратора.</p>
+      </section>
+
+      <section class="menu-section" id="hot" aria-labelledby="hot-title" tabindex="-1">
+        <header class="section-heading">
+          <h2 id="hot-title">Горячие блюда</h2>
+          <a class="contents-link" href="#contents"><span aria-hidden="true">↑</span> К содержанию</a>
+        </header>
+        <ul class="dish-list">
+          <li class="dish">
+            <div>
+              <h3>Шницель мясной</h3>
+              <p class="composition">свинина, панировочные сухари, специи</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">220&nbsp;₽</strong>
+                <span class="portion">100 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Мясо по-французски</h3>
+              <p class="composition">шампиньоны маринованные, свинина, лук, помидор, сыр, майонез</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">230&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Котлета домашняя</h3>
+              <p class="composition">свинина, говядина, специи</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">220&nbsp;₽</strong>
+                <span class="portion">100 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Котлета рыбная</h3>
+              <p class="composition">треска, специи</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">180&nbsp;₽</strong>
+                <span class="portion">80 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Рыба жареная</h3>
+              <p class="composition">треска, специи</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">220&nbsp;₽</strong>
+                <span class="portion">100 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Курочка с ветчиной</h3>
+              <p class="composition">курица, ветчина, сыр, майонез</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">210&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Филе куриное в яйце</h3>
+              <p class="composition">курица, яйцо, специи</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">190&nbsp;₽</strong>
+                <span class="portion">100 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Филе куриное «Смак»</h3>
+              <p class="composition">курица, сыр, панировка</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">230&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Курочка под овощами</h3>
+              <p class="composition">курица, лук, морковь, помидор, майонез, сыр</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">210&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Котлета «Ладожская»</h3>
+              <p class="composition">свинина, курица, специи</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">180&nbsp;₽</strong>
+                <span class="portion">80 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Паста «Карбонара»</h3>
+              <p class="composition">лапша, бекон, пармезан, лук, сливки, чеснок, помидоры черри</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">400&nbsp;₽</strong>
+                <span class="portion">250 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Паста с курицей</h3>
+              <p class="composition">лапша, курица, пармезан, лук, сливки, чеснок, помидоры черри</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">380&nbsp;₽</strong>
+                <span class="portion">250 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Паста с грибами</h3>
+              <p class="composition">лапша-гнёзда, грибы, пармезан, лук, сливки, чеснок, помидоры черри</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">440&nbsp;₽</strong>
+                <span class="portion">250 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Пельмени</h3>
+              <p class="composition">тесто, курица, свинина, специи</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">200&nbsp;₽</strong>
+                <span class="portion">250 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Голубцы</h3>
+              <p class="composition">капуста, специи, курица, свинина</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">300&nbsp;₽</strong>
+                <span class="portion">2 шт.</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p class="availability">* Готовятся в ограниченном количестве. Уточняйте по наличию у администратора.</p>
+      </section>
+
+      <section class="menu-section" id="sides" aria-labelledby="sides-title" tabindex="-1">
+        <header class="section-heading">
+          <h2 id="sides-title">Гарниры</h2>
+          <a class="contents-link" href="#contents"><span aria-hidden="true">↑</span> К содержанию</a>
+        </header>
+        <ul class="dish-list">
+          <li class="dish">
+            <div>
+              <h3>Пюре картофельное</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">90&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Макароны</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">90&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Гречка</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">90&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Рис</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">90&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p class="availability">* Готовятся в ограниченном количестве. Уточняйте по наличию у администратора.</p>
+      </section>
+
+      <section class="menu-section" id="fast-food" aria-labelledby="fast-food-title" tabindex="-1">
+        <header class="section-heading">
+          <h2 id="fast-food-title">Фаст-фуд</h2>
+          <a class="contents-link" href="#contents"><span aria-hidden="true">↑</span> К содержанию</a>
+        </header>
+        <ul class="dish-list">
+          <li class="dish">
+            <div>
+              <h3>Хот-дог сырный</h3>
+              <p class="composition">сосиска гриль, пшеничная булочка, сыр чеддер, горчица, томатный соус, сырный соус, хрустящий лук</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">269&nbsp;₽</strong>
+                <span class="portion">1 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Хот-дог фреш</h3>
+              <p class="composition">сосиска гриль, пшеничная булочка, пекинская капуста, хрустящий лук, горчица, томатный соус, гамбургер</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">279&nbsp;₽</strong>
+                <span class="portion">1 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Хот-дог сладкий чили</h3>
+              <p class="composition">сосиска гриль, пшеничная булочка, пекинская капуста, пикантная пепперони, фирменный соус тейси, барбекю, соус сладкий чили, хрустящий лук</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">289&nbsp;₽</strong>
+                <span class="portion">1 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Хот-дог классик</h3>
+              <p class="composition">сосиска гриль, пшеничная булочка, маринованные огурцы, горчица, томатный соус, кисло-сладкий, хрустящий лук</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">289&nbsp;₽</strong>
+                <span class="portion">1 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Шаверма на тарелке</h3>
+              <p class="composition">огурец, помидор, картофель фри, лук, капуста пекинская, морковь по-корейски, курица, соус</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">449&nbsp;₽</strong>
+                <span class="portion">1 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Шаверма классическая</h3>
+              <p class="composition">лаваш, курица, соус, огурец, помидор, лук</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">289&nbsp;₽</strong>
+                <span class="portion">300 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Шаверма острая</h3>
+              <p class="composition">лаваш, курица, соус, острый соус, огурец, помидор, лук, морковь по-корейски</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">309&nbsp;₽</strong>
+                <span class="portion">350 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Шаверма по-европейски</h3>
+              <p class="composition">лаваш, курица, соус, огурец, помидор, лук, капуста пекинская, перец болгарский, сыр</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">349&nbsp;₽</strong>
+                <span class="portion">350 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Шаверма царская</h3>
+              <p class="composition">лаваш, курица, соус, огурец маринованный, помидор, капуста пекинская, перец болгарский, сыр, ветчина</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">379&nbsp;₽</strong>
+                <span class="portion">400 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Шаверма сырная</h3>
+              <p class="composition">лаваш, курица, соус, огурец, помидор, лук, сыр</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">309&nbsp;₽</strong>
+                <span class="portion">350 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>BEEF ролл</h3>
+              <p class="composition">лаваш, котлета, салат «айсберг», помидор, лук красный, сыр, соус чесночный</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">329&nbsp;₽</strong>
+                <span class="portion">250 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Цезарь ролл</h3>
+              <p class="composition">лаваш, курица, соус, огурец маринованный, помидор, лук, капуста пекинская, сыр</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">349&nbsp;₽</strong>
+                <span class="portion">350 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Чикен бургер</h3>
+              <p class="composition">куриная котлета в панировке, помидор, салат «айсберг», сырный соус, кисло-сладкий соус</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">269&nbsp;₽</strong>
+                <span class="portion">1 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Чизбургер</h3>
+              <p class="composition">говяжий бифштекс, маринованный огурец, сыр чеддер, сухой лук, барбекю соус, кисло-сладкий соус</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">289&nbsp;₽</strong>
+                <span class="portion">1 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Чикен фреш</h3>
+              <p class="composition">куриная котлета в панировке, помидор, салат «айсберг», сыр чеддер, сырный соус, томатный соус, кисло-сладкий соус</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">299&nbsp;₽</strong>
+                <span class="portion">1 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Биг фреш</h3>
+              <p class="composition">говяжий бифштекс, огурец, помидор, красный лук, салат «айсберг», томатный соус, кисло-сладкий соус</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">399&nbsp;₽</strong>
+                <span class="portion">1 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Биг чиз</h3>
+              <p class="composition">бифштекс на гриле, сыр чеддер, маринованные огурцы, красный лук, помидор, салат «айсберг», горчица, томатный соус</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">419&nbsp;₽</strong>
+                <span class="portion">1 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Корейский бургер</h3>
+              <p class="composition">бифштекс на гриле, морковь по-корейски, помидор, салат «айсберг», чесночный соус, кисло-сладкий соус</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">459&nbsp;₽</strong>
+                <span class="portion">1 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Мега фри</h3>
+              <p class="composition">бифштекс на гриле, картофель фри, маринованный огурец, помидор, салат «айсберг», сыр чеддер, кисло-сладкий соус, томатный соус, сырный соус</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">319&nbsp;₽</strong>
+                <span class="portion">1 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Наггетсы</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">209&nbsp;₽</strong>
+                <span class="portion">6 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Сырные палочки</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">279&nbsp;₽</strong>
+                <span class="portion">5 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Картошка фри mini/max</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">139&nbsp;₽</strong>
+                <span class="portion">80 г</span>
+              </div>
+              <div>
+                <strong class="price">219&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Дольки по-деревенски</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">269&nbsp;₽</strong>
+                <span class="portion">150 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Соусы в ассортименте</h3>
+              <p class="composition">чесночный, сырный, барбекю, томатный, кисло-сладкий</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">60&nbsp;₽</strong>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="menu-section" id="pizza" aria-labelledby="pizza-title" tabindex="-1">
+        <header class="section-heading">
+          <h2 id="pizza-title">Пицца</h2>
+          <a class="contents-link" href="#contents"><span aria-hidden="true">↑</span> К содержанию</a>
+        </header>
+        <ul class="dish-list">
+          <li class="dish">
+            <div>
+              <h3>Ассорти</h3>
+              <p class="composition">микс в одной пицце</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">780&nbsp;₽</strong>
+                <span class="portion">600 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Три сыра</h3>
+              <p class="composition">тесто, соус, зелень, адыгейский сыр, сыр моцарелла, соус сырный</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">630&nbsp;₽</strong>
+                <span class="portion">600 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Прованс</h3>
+              <p class="composition">тесто, соус, ветчина, салями, курица, помидор, перец болгарский, зелень, лук, оливки, сыр</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">780&nbsp;₽</strong>
+                <span class="portion">600 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Пепперони</h3>
+              <p class="composition">тесто, соус, сыр моцарелла, помидор, пепперони</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">650&nbsp;₽</strong>
+                <span class="portion">600 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Домашняя</h3>
+              <p class="composition">тесто, соус, ветчина, салями, шампиньоны, помидоры, зелень, лук, оливки, сыр</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">650&nbsp;₽</strong>
+                <span class="portion">600 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Деревенская</h3>
+              <p class="composition">тесто, соус, сыр, салями, огурец, ветчина, помидоры</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">650&nbsp;₽</strong>
+                <span class="portion">600 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Гавайская</h3>
+              <p class="composition">тесто, соус, сыр, курица, ананас</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">700&nbsp;₽</strong>
+                <span class="portion">600 г</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Нежная</h3>
+              <p class="composition">тесто, соус, сыр адыгейский, курица, перец болгарский, зелень, сыр моцарелла</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">650&nbsp;₽</strong>
+                <span class="portion">600 г</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p class="availability">* Готовятся под заказ. Уточняйте по наличию у администратора.</p>
+      </section>
+
+      <section class="menu-section" id="pies" aria-labelledby="pies-title" tabindex="-1">
+        <header class="section-heading">
+          <h2 id="pies-title">Пироги</h2>
+          <a class="contents-link" href="#contents"><span aria-hidden="true">↑</span> К содержанию</a>
+        </header>
+        <ul class="dish-list">
+          <li class="dish">
+            <div>
+              <h3>Осетинские пироги</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">800&nbsp;₽</strong>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Сладкие пироги</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">750&nbsp;₽</strong>
+                <span class="portion">1000 г</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p class="availability">* Готовятся под заказ. Уточняйте по наличию у администратора.</p>
+      </section>
+
+      <section class="menu-section" id="desserts" aria-labelledby="desserts-title" tabindex="-1">
+        <header class="section-heading">
+          <h2 id="desserts-title">Десерты</h2>
+          <a class="contents-link" href="#contents"><span aria-hidden="true">↑</span> К содержанию</a>
+        </header>
+        <ul class="dish-list">
+          <li class="dish">
+            <div>
+              <h3>Блинчики</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">100&nbsp;₽</strong>
+                <span class="portion">2 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Блинчики с мясом</h3>
+              <p class="composition">со сметаной</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">200&nbsp;₽</strong>
+                <span class="portion">2 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Десерты в ассортименте</h3>
+              <ul class="assortment">
+                <li>Штрудель</li>
+                <li>Чизкейки</li>
+                <li>Трейфл</li>
+                <li>Меренговый рулет</li>
+                <li>Донат</li>
+                <li>Тарталетки</li>
+              </ul>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">от 100&nbsp;₽</strong>
+                <span class="portion">1 шт.</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Мороженое</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">90&nbsp;₽</strong>
+                <span class="portion">1 шарик</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p class="availability">* Уточняйте по наличию у администратора.</p>
+      </section>
+
+      <section class="menu-section" id="tea" aria-labelledby="tea-title" tabindex="-1">
+        <header class="section-heading">
+          <h2 id="tea-title">Чайная карта</h2>
+          <a class="contents-link" href="#contents"><span aria-hidden="true">↑</span> К содержанию</a>
+        </header>
+        <ul class="dish-list">
+          <li class="dish">
+            <div>
+              <h3>Сладкая малина</h3>
+              <p class="composition">малина, апельсин, лимон, мята, чай</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">200&nbsp;₽</strong>
+                <span class="portion">800 мл</span>
+              </div>
+              <div>
+                <strong class="price">240&nbsp;₽</strong>
+                <span class="portion">1200 мл</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Брусничный щербет</h3>
+              <p class="composition">чебрец, мята, лимон, яблоко, брусника, мёд, чай</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">200&nbsp;₽</strong>
+                <span class="portion">800 мл</span>
+              </div>
+              <div>
+                <strong class="price">240&nbsp;₽</strong>
+                <span class="portion">1200 мл</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Пряная вишня</h3>
+              <p class="composition">вишня, кардамон, имбирь, чабрец, каркаде</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">200&nbsp;₽</strong>
+                <span class="portion">800 мл</span>
+              </div>
+              <div>
+                <strong class="price">240&nbsp;₽</strong>
+                <span class="portion">1200 мл</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Согревающий детокс</h3>
+              <p class="composition">апельсин, лимон, мандарин, имбирь, мёд, чай</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">200&nbsp;₽</strong>
+                <span class="portion">800 мл</span>
+              </div>
+              <div>
+                <strong class="price">240&nbsp;₽</strong>
+                <span class="portion">1200 мл</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Грушевый пунш</h3>
+              <p class="composition">груша, бадьян, лимон, чай</p>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">200&nbsp;₽</strong>
+                <span class="portion">800 мл</span>
+              </div>
+              <div>
+                <strong class="price">240&nbsp;₽</strong>
+                <span class="portion">1200 мл</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Чай пакетированный</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">50&nbsp;₽</strong>
+                <span class="portion">1 шт.</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p class="availability">* Готовятся по заказу. Уточняйте по наличию у администратора.</p>
+      </section>
+
+      <section class="menu-section" id="coffee" aria-labelledby="coffee-title" tabindex="-1">
+        <header class="section-heading">
+          <h2 id="coffee-title">Кофейная карта</h2>
+          <a class="contents-link" href="#contents"><span aria-hidden="true">↑</span> К содержанию</a>
+        </header>
+        <ul class="dish-list">
+          <li class="dish">
+            <div>
+              <h3>Эспрессо</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">90&nbsp;₽</strong>
+                <span class="portion">80 мл</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Американо</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">90&nbsp;₽</strong>
+                <span class="portion">200 мл</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Капучино</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">100&nbsp;₽</strong>
+                <span class="portion">200 мл</span>
+              </div>
+              <div>
+                <strong class="price">120&nbsp;₽</strong>
+                <span class="portion">300 мл</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Мокачино</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">140&nbsp;₽</strong>
+                <span class="portion">300 мл</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Латте</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">140&nbsp;₽</strong>
+                <span class="portion">300 мл</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Топинги в ассортименте</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">50&nbsp;₽</strong>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="menu-section" id="drinks" aria-labelledby="drinks-title" tabindex="-1">
+        <header class="section-heading">
+          <h2 id="drinks-title">Напитки</h2>
+          <a class="contents-link" href="#contents"><span aria-hidden="true">↑</span> К содержанию</a>
+        </header>
+        <ul class="dish-list">
+          <li class="dish">
+            <div>
+              <h3>Молочный коктейль</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">200&nbsp;₽</strong>
+                <span class="portion">400 мл</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Домашний морс</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">60&nbsp;₽</strong>
+                <span class="portion">250 мл</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Сок</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">60&nbsp;₽</strong>
+                <span class="portion">250 мл</span>
+              </div>
+            </div>
+          </li>
+          <li class="dish">
+            <div>
+              <h3>Домашний компот</h3>
+            </div>
+            <div class="prices">
+              <div>
+                <strong class="price">60&nbsp;₽</strong>
+                <span class="portion">250 мл</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <a class="pdf-link" href="menu.pdf">Полное меню в PDF <span aria-hidden="true">→</span></a>
+    </footer>
+  </div>
+</body>
+</html>
